@@ -1,0 +1,22 @@
+version: '3.7'
+services:
+  mysqldb:
+    container_name: mysql
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+    volumes:
+      - msql-vol:/var/lib/mysql
+  kinesis:
+    image: vsouza/kinesis-local:latest
+    command: --port 4567
+    restart: always
+    ports:
+      - 4567:4567
+volumes:
+  msql-vol:
